@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "cc2f08dc-43f9-47f6-9a25-c0d752284d8d",
+		"name": "금결원API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "인증요청",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/oauth/2.0/authorize?response_type=code&client_id=9c785a50-ac39-4dac-af61-eb82eb80e139&redirect_uri=http://localhost:3000/authResult&scope=login inquiry transfer&state=12345678901234567890123456789012&auth_type=0",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"oauth",
+						"2.0",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "client_id",
+							"value": "9c785a50-ac39-4dac-af61-eb82eb80e139"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:3000/authResult"
+						},
+						{
+							"key": "scope",
+							"value": "login inquiry transfer"
+						},
+						{
+							"key": "state",
+							"value": "12345678901234567890123456789012"
+						},
+						{
+							"key": "auth_type",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "인증토큰발급",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "3nAqG6j85Wg8dhKJ1s9WF16fhln27y",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "9c785a50-ac39-4dac-af61-eb82eb80e139",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "93b9698e-14a8-4462-9f76-6fe06e0250de",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:3000/authResult",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/oauth/2.0/token",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"oauth",
+						"2.0",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "\b사용자정보조회",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0NzM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2OTg3MjU0OTAsImp0aSI6Ijk4OWVhMDYxLWJjYjYtNDdmMy1iY2U5LTNhNGYzNzg3MDliOCJ9.5PuPPV9d31yZ9DqcV5ERomZgBoL26OGH_daSAY1vVNA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/v2.0/user/me?user_seq_no=1100034736",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"v2.0",
+						"user",
+						"me"
+					],
+					"query": [
+						{
+							"key": "user_seq_no",
+							"value": "1100034736"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "계좌잔액조회",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0NzM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2OTg3MzI2NjgsImp0aSI6IjdjNmQ3YTU1LTViMDYtNDVkYi1hNTk5LTg1MDQ2Y2FjZDNmNSJ9.UHVSxOs1aQ1pNkG_VffBr0_KEKrn7o-rj-VZA-A8EmY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/v2.0/account/balance/fin_num?bank_tran_id=M202300440U000000004&fintech_use_num=120230044088951024009186&tran_dtime=20230802161900",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"v2.0",
+						"account",
+						"balance",
+						"fin_num"
+					],
+					"query": [
+						{
+							"key": "bank_tran_id",
+							"value": "M202300440U000000004"
+						},
+						{
+							"key": "fintech_use_num",
+							"value": "120230044088951024009186"
+						},
+						{
+							"key": "tran_dtime",
+							"value": "20230802161900"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "거래내역조회",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0NzM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2OTg3MzI2NjgsImp0aSI6IjdjNmQ3YTU1LTViMDYtNDVkYi1hNTk5LTg1MDQ2Y2FjZDNmNSJ9.UHVSxOs1aQ1pNkG_VffBr0_KEKrn7o-rj-VZA-A8EmY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/v2.0/account/transaction_list/fin_num?bank_tran_id=M202300440U008900004&fintech_use_num=120230044088951024139191&inquiry_type=A&inquiry_base=D&from_date=20230101&to_date=20230101&sort_order=D&tran_dtime=20230803110700",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"v2.0",
+						"account",
+						"transaction_list",
+						"fin_num"
+					],
+					"query": [
+						{
+							"key": "bank_tran_id",
+							"value": "M202300440U008900004"
+						},
+						{
+							"key": "fintech_use_num",
+							"value": "120230044088951024139191"
+						},
+						{
+							"key": "inquiry_type",
+							"value": "A"
+						},
+						{
+							"key": "inquiry_base",
+							"value": "D"
+						},
+						{
+							"key": "from_date",
+							"value": "20230101"
+						},
+						{
+							"key": "to_date",
+							"value": "20230101"
+						},
+						{
+							"key": "sort_order",
+							"value": "D"
+						},
+						{
+							"key": "tran_dtime",
+							"value": "20230803110700"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "출금 이체 코드",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0NzM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2OTg3MzI2NjgsImp0aSI6IjdjNmQ3YTU1LTViMDYtNDVkYi1hNTk5LTg1MDQ2Y2FjZDNmNSJ9.UHVSxOs1aQ1pNkG_VffBr0_KEKrn7o-rj-VZA-A8EmY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"bank_tran_id\": \"\",\n      \"cntr_account_type\": \"N\",\n      \"cntr_account_num\": \"\",\n      \"dps_print_content\": \"\",\n      \"fintech_use_num\": \"\",\n      \"wd_print_content\": \"오픈뱅킹출금\",\n      \"tran_amt\": \"\",\n      \"tran_dtime\": \"\",\n      \"req_client_name\": \"\",\n      \"req_client_fintech_use_num\": \"\",\n      \"req_client_num\": \"\",\n      \"transfer_purpose\": \"\",\n      \"recv_client_name\": \"\",\n      \"recv_client_bank_code\": \"\",\n      \"recv_client_account_num\": \"\"\n}     ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/v2.0/transfer/withdraw/fin_num",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"v2.0",
+						"transfer",
+						"withdraw",
+						"fin_num"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2legged Token 발급",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "9c785a50-ac39-4dac-af61-eb82eb80e139",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "93b9698e-14a8-4462-9f76-6fe06e0250de",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "oob",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/oauth/2.0/token",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"oauth",
+						"2.0",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "입금이체",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMzAwNDQwIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjk4ODIxNjkzLCJqdGkiOiI0ZGFmN2ZlNy03MmViLTRiNmYtOTQ2OS0wYzZlOWRmMDhlM2UifQ.3TtYtDOC2KcN60ozfvzugoDK2Z_9jYcaeyJRvkXzKLw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cntr_account_type\": \"N\",\n    \"cntr_account_num\": \"200000000001\",\n    \"wd_pass_phrase\": \"NONE\",\n    \"wd_print_content\": \"환불금액\",\n    \"name_check_option\": \"off\",\n    \"tran_dtime\": \"20220812130000\",\n    \"req_cnt\": \"1\",\n    \"req_list\": [\n        {\n            \"tran_no\": \"1\",\n            \"bank_tran_id\": genTransId(),\n            \"fintech_use_num\": tofintechno,\n            \"print_content\": \"오픈서비스캐시백\",\n            \"tran_amt\": amount,\n            \"req_client_name\": \"유관우\",\n            \"req_client_fintech_use_num\": fintechUseNo,\n            \"req_client_num\": \"1234\",\n            \"transfer_purpose\": \"ST\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/v2.0/transfer/deposit/fin_num",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"v2.0",
+						"transfer",
+						"deposit",
+						"fin_num"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

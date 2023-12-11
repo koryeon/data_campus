@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "cc2f08dc-43f9-47f6-9a25-c0d752284d8d",
+		"name": "금결원API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "인증요청",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/oauth/2.0/authorize?response_type=code&client_id=9c785a50-ac39-4dac-af61-eb82eb80e139&redirect_uri=http://localhost:3000/authResult&scope=login inquiry transfer&state=12345678901234567890123456789012&auth_type=0",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"oauth",
+						"2.0",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "client_id",
+							"value": "9c785a50-ac39-4dac-af61-eb82eb80e139"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:3000/authResult"
+						},
+						{
+							"key": "scope",
+							"value": "login inquiry transfer"
+						},
+						{
+							"key": "state",
+							"value": "12345678901234567890123456789012"
+						},
+						{
+							"key": "auth_type",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "인증토큰발급",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "3nAqG6j85Wg8dhKJ1s9WF16fhln27y",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "9c785a50-ac39-4dac-af61-eb82eb80e139",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "93b9698e-14a8-4462-9f76-6fe06e0250de",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:3000/authResult",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/oauth/2.0/token",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"oauth",
+						"2.0",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "\b사용자정보조회",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwMDM0NzM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2OTg3MjU0OTAsImp0aSI6Ijk4OWVhMDYxLWJjYjYtNDdmMy1iY2U5LTNhNGYzNzg3MDliOCJ9.5PuPPV9d31yZ9DqcV5ERomZgBoL26OGH_daSAY1vVNA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://testapi.openbanking.or.kr/v2.0/user/me?user_seq_no=1100034736",
+					"protocol": "https",
+					"host": [
+						"testapi",
+						"openbanking",
+						"or",
+						"kr"
+					],
+					"path": [
+						"v2.0",
+						"user",
+						"me"
+					],
+					"query": [
+						{
+							"key": "user_seq_no",
+							"value": "1100034736"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
